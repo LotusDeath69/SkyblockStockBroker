@@ -1,0 +1,90 @@
+from selenium import webdriver
+import Password
+from time import sleep
+from selenium.webdriver.common.by import By
+import selenium.webdriver.support.expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+import random
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
+PATH = 'C:\chromedriver.exe'
+username = 'LotusDeath69@gmail.com'
+browser = webdriver.Chrome(PATH)
+driver = browser
+
+
+def waiting(element):
+
+    try:
+        WebDriverWait(driver, 30).until(
+            EC.presence_of_element_located((By.XPATH, element))
+        )
+    finally:
+        pass
+
+
+class Bot:
+    def __init__(self, driver, gmail, password):
+        self.driver = driver
+        self.gmail = username
+        self.password = password
+
+    def get_discord(self):
+        self.driver.get('https://discord.com/channels/715801930877894706/720595294663868487')
+
+    def log_in(self):
+        waiting('//*[@id="app-mount"]/div[2]/div/div[3]/div/div/form/div/div/div[1]/div[3]/div[1]/div/input')
+        logging_in = self.driver.find_element_by_xpath('//*[@id="app-mount"]/div[2]/div/div[3'
+                                                       ']/div/div/form/div/div/div[1]/div[3]/div[1]/div/input')
+        logging_in.send_keys(username)
+        Paassword = self.driver.find_element_by_xpath('//*[@id="app-mount"]/div[2]/div/div[3'
+                                                      ']/div/div/form/div/div/div[1]/div[3]/div[2]/div/input')
+        Paassword.send_keys(Password.password)
+        self.driver.find_element_by_xpath('//*[@id="app-mount"]/div[2]/div/div[3]/div/'
+                                          'div/form/div/div/div[1]/div[3]/button[2]').click()
+
+    def server(self):
+        waiting('//*[@id="app-mount"]/div[2]/div/div[2]/div/div/div/div[2]/div[2]'
+                '/div/div[1]/div/div/div/div[4]/button[2]')
+        self.driver.find_element_by_xpath('//*[@id="app-mount"]/div[2]/div/div[2]/div'
+                                          '/div/div/div[2]/div[2]/div/div[1]/div/div/div/div[4]/button[2]').click()
+
+    def spam(self):
+        spam_count = 0
+        rest_count = 0
+        talk = True
+        waiting('//*[@id="app-mount"]/div[2]/div/div[2]/div/div/div/div[2]/div'
+                '[2]/div/main/form/div/div/div/div/div[1]/div[2]')
+        text_area = driver.find_element_by_xpath('//*[@id="app-mount"]/div[2]/div/div['
+                                                 '2]/div/div/div/div[2]/div[2]/div/main/form/div/di'
+                                                 'v/div/div/div[1]/div[2]')
+        while talk is True:
+            text_area.send_keys('hi')
+            text_area.send_keys(Keys.ENTER)
+            for x in range(1):
+                count = random.randint(60, 120)
+            sleep(count)
+            spam_count += 1
+            print(spam_count)
+            if spam_count == 100:
+                talk = False
+                for y in range(1):
+                    sleep_period = random.randint(800, 1500)
+                    sleep(sleep_period)
+                    talk = True
+                    rest_count += 1
+                    print(sleep_period)
+                    if rest_count == 5:
+                        talk = False
+                        for z in range(1):
+                            rest_duration = random.randint(28800, 36000)
+                            sleep(rest_duration)
+                            talk = True
+
+
+DiscordBot = Bot(driver, username, Password.password)
+
+DiscordBot.get_discord()
+DiscordBot.log_in()
+DiscordBot.server()
+DiscordBot.spam()
